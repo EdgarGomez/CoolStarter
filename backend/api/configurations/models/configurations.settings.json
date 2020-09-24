@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "configurations",
+  "info": {
+    "name": "configurations"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "siteUrl": {
+      "type": "string"
+    },
+    "mainColor": {
+      "type": "string"
+    }
+  }
+}
