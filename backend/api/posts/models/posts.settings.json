@@ -27,9 +27,6 @@
       "plugin": "upload",
       "required": false
     },
-    "content": {
-      "type": "richtext"
-    },
     "date": {
       "type": "date"
     },
@@ -41,6 +38,9 @@
     },
     "author": {
       "model": "author"
+    },
+    "blocks": {
+      "type": "json"
     }
   }
 }

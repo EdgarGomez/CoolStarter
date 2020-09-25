@@ -127,7 +127,9 @@ function MyApp({ Component, pageProps }) {
   useScreenPlugin(DesignPlugin);
   return (
     <ChakraProvider resetCSS theme={customTheme}>
-      <Component {...pageProps} />
+      <StrapiProvider>
+        <Component {...pageProps} />
+      </StrapiProvider>
     </ChakraProvider>
   );
 }
@@ -136,8 +138,11 @@ export default withTina(MyApp, {
   enabled: true,
   toolbar: { hidden: false },
   sidebar: true,
+  apis: {
+    strapi: new StrapiClient(process.env.STRAPI_URL),
+  },
   media: {
-    store: new StrapiMediaStore("http://localhost:1337"),
+    store: new StrapiMediaStore(process.env.STRAPI_URL),
   },
   plugins: [MarkdownFieldPlugin, HtmlFieldPlugin, newPost, DateFieldPlugin],
 });

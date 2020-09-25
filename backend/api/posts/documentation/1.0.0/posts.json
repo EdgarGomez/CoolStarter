@@ -589,9 +589,6 @@
               }
             }
           },
-          "content": {
-            "type": "string"
-          },
           "date": {
             "type": "string"
           },
@@ -616,6 +613,9 @@
                 "type": "string"
               }
             }
+          },
+          "blocks": {
+            "type": "object"
           }
         }
       },
@@ -626,9 +626,6 @@
           },
           "slug": {
             "type": "uid"
-          },
-          "content": {
-            "type": "string"
           },
           "date": {
             "type": "string"
@@ -641,6 +638,9 @@
           },
           "author": {
             "type": "string"
+          },
+          "blocks": {
+            "type": "object"
           }
         }
       }

@@ -4,7 +4,7 @@ import Container from "../../components/container";
 import PostBody from "../../components/post-body";
 import Header from "../../components/header";
 import PostHeader from "../../components/post-header";
-import { InlineForm } from "react-tinacms-inline";
+import { InlineForm, InlineBlocks } from "react-tinacms-inline";
 import Layout from "../../components/layout";
 import { getPostBySlug, getAllPosts } from "../../lib/api";
 import PostTitle from "../../components/post-title";
@@ -16,6 +16,11 @@ import { useForm, usePlugin, useCMS } from "tinacms";
 import postsApi from "../../lib/posts-api";
 import configurationsApi from "../../lib/configurations-api";
 import { DateFieldPlugin } from "react-tinacms-date";
+// blocks
+import { heroBlock } from "../../blocks/Hero";
+import { imagesBlock } from "../../blocks/Images";
+import { paragraphBlock } from "../../blocks/Paragraph";
+import { featureListBlock } from "../../blocks/FeatureList";
 
 export default function Post({
   config: initialConfig,
@@ -63,12 +68,19 @@ export default function Post({
     ],
   };
 
+  const VISUAL_BLOCKS = {
+    hero: heroBlock,
+    images: imagesBlock,
+    paragraph: paragraphBlock,
+    features: featureListBlock,
+  };
+
   const formConfig = {
     id: 1,
-    label: "Blog Post",
+    label: initialPost.title,
     initialValues: initialPost,
     onSubmit: async (values) => {
-      console.log("values", { title: values.title, content: values.content });
+      //console.log("values", { title: values.title, content: values.content });
       //alert(`Submitting ${values.title}`);
       await postsApi
         .update(values.id, values)
@@ -93,11 +105,16 @@ export default function Post({
         dateFormat: "MMMM DD YYYY",
         timeFormat: false,
       },
-
       {
-        name: "content",
-        label: "Content",
-        component: "markdown",
+        label: "Post Sections",
+        name: "blocks",
+        component: "blocks",
+        templates: {
+          hero: heroBlock.template,
+          images: imagesBlock.template,
+          paragraph: paragraphBlock.template,
+          features: featureListBlock.template,
+        },
       },
     ],
   };
@@ -127,12 +144,16 @@ export default function Post({
               <InlineForm form={form}>
                 <PostHeader
                   title={post.title}
-                  coverImage={post.coverImage}
+                  coverImage={post.coverImage.url}
                   date={post.date}
                   author={post.author}
                 />
 
-                <PostBody content={post.content} />
+                <InlineBlocks
+                  name="blocks"
+                  source={post.blocks}
+                  blocks={VISUAL_BLOCKS}
+                />
               </InlineForm>
             </article>
           </>

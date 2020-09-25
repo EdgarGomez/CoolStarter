@@ -1,4 +1,4 @@
-import Avatar from "../components/avatar";
+InlineImageimport Avatar from "../components/avatar";
 import DateFormater from "../components/date-formater";
 import CoverImage from "../components/cover-image";
 import PostTitle from "../components/post-title";
@@ -11,6 +11,7 @@ import {
 } from "react-tinacms-strapi";
 
 export default function PostHeader({ title, coverImage, date, author }) {
+  const cms = useCMS();
   return (
     <>
       <PostTitle>
@@ -28,9 +29,22 @@ export default function PostHeader({ title, coverImage, date, author }) {
         {coverImage && (
           <CoverImage
             title={title}
-            src={`http://localhost:1337${coverImage.url}`}
+            src={`http://localhost:1337${coverImage}`}
           />
         )}
+        <InlineImage
+          name="coverImage.url"
+          previewSrc={(formValues) => {
+            process.env.STRAPI_URL +
+              cms.media.store.getFilePath(formValues.coverImage.url);
+          }}
+          uploadDir={() => "/uploads"}
+          parse={(filename) => {
+            return `/uploads/${filename}`;
+          }}
+        >
+          yepa
+          </InlineImage>
       </div>
       <div className="max-w-2xl mx-auto">
         <div className="block md:hidden mb-6">
