@@ -14,6 +14,7 @@ import markdownToHtml from "../../lib/markdownToHtml";
 import { useState, useEffect, useMemo } from "react";
 import { useForm, usePlugin, useCMS } from "tinacms";
 import postsApi from "../../lib/posts-api";
+import uploadsApi from "../../lib/uploads-api";
 import configurationsApi from "../../lib/configurations-api";
 import { DateFieldPlugin } from "react-tinacms-date";
 // blocks
@@ -75,12 +76,21 @@ export default function Post({
     features: featureListBlock,
   };
 
+  console.log("imagen inicial", initialPost.coverImage);
+
   const formConfig = {
     id: 1,
     label: initialPost.title,
     initialValues: initialPost,
     onSubmit: async (values) => {
-      //console.log("values", { title: values.title, content: values.content });
+      console.log("values", {
+        title: values.title,
+        coverImage: values.coverImage,
+      });
+      //values.coverImage.id = cms.media.store.getFileId(values.coverImage.url);
+      const uploadImage = await uploadsApi.findByUrl(values.coverImage.url);
+      values.coverImage.id = uploadImage.data[0].id;
+      console.log("values despues del tratamiento", values.coverImage);
       //alert(`Submitting ${values.title}`);
       await postsApi
         .update(values.id, values)
@@ -144,7 +154,7 @@ export default function Post({
               <InlineForm form={form}>
                 <PostHeader
                   title={post.title}
-                  coverImage={post.coverImage.url}
+                  coverImage={post.coverImage}
                   date={post.date}
                   author={post.author}
                 />

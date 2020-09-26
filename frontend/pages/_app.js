@@ -10,6 +10,7 @@ import {
   StrapiProvider,
   StrapiClient,
 } from "react-tinacms-strapi";
+import { SMediaStore } from "../lib/media-store";
 import { ChakraProvider, theme } from "@chakra-ui/core";
 
 import { merge } from "@chakra-ui/utils";
@@ -138,11 +139,8 @@ export default withTina(MyApp, {
   enabled: true,
   toolbar: { hidden: false },
   sidebar: true,
-  apis: {
-    strapi: new StrapiClient(process.env.STRAPI_URL),
-  },
-  media: {
-    store: new StrapiMediaStore(process.env.STRAPI_URL),
-  },
   plugins: [MarkdownFieldPlugin, HtmlFieldPlugin, newPost, DateFieldPlugin],
+  media: {
+    store: new SMediaStore(process.env.STRAPI_URL),
+  },
 });
