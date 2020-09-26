@@ -11,20 +11,30 @@ function Images({ index }) {
         <div className="image-diptych">
           <InlineImage
             name="left.src"
-            parse={(filename) => `/${filename}`}
-            uploadDir={() => "/assets/images/"}
-            previewSrc={(formValues) =>
-              `/assets/images${formValues.blocks[index].left.src}`
-            }
+            previewSrc={(formValues) => {
+              const result = `${process.env.STRAPI_URL}${formValues.blocks[index].left.src}`;
+              return result;
+            }}
+            uploadDir={() => {
+              return "/uploads";
+            }}
+            parse={(filename) => {
+              return `/uploads/${filename}`;
+            }}
             focusRing={false}
           />
           <InlineImage
             name="right.src"
-            parse={(filename) => `/${filename}`}
-            uploadDir={() => "/assets/images/"}
-            previewSrc={(formValues) =>
-              `/assets/images${formValues.blocks[index].right.src}`
-            }
+            previewSrc={(formValues) => {
+              const result = `${process.env.STRAPI_URL}${formValues.blocks[index].right.src}`;
+              return result;
+            }}
+            uploadDir={() => {
+              return "/uploads";
+            }}
+            parse={(filename) => {
+              return `/uploads/${filename}`;
+            }}
             focusRing={false}
           />
         </div>
@@ -44,11 +54,11 @@ export const imagesBlock = {
     defaultItem: {
       _template: "images",
       left: {
-        src: "/ivan-bandura-unsplash-square.jpg",
+        src: "/uploads/ivan_bandura_unsplash_square_0369de3ace.jpg",
         alt: "ocean",
       },
       right: {
-        src: "/martin-sanchez-unsplash-square.jpg",
+        src: "/uploads/martin_sanchez_unsplash_square_cdac9ddee7.jpg",
         alt: "dunes",
       },
     },
@@ -57,21 +67,14 @@ export const imagesBlock = {
         name: "left.src",
         label: "Left-Hand Image",
         component: "image",
-        parse: (filename) => `/${filename}`,
-        uploadDir: () => "/assets/images/",
+        parse: (filename) => `/uploads/${filename}`,
+        uploadDir: () => "/uploads",
         previewSrc: (formValues, input) => {
-          /**
-           * Get index from field input. Assumes the block
-           * is only one level deep
-           */
           const index = input.field.name.split(".")[1];
-          /**
-           * Use that index to target the correct
-           * block in `formValues`
-           */
-          const currentBlockImage = formValues.blocks[index].left.src;
-          return currentBlockImage;
+          const result = `${process.env.STRAPI_URL}${formValues.blocks[index].left.src}`;
+          return result;
         },
+
         focusRing: false,
       },
       {
@@ -83,13 +86,14 @@ export const imagesBlock = {
         name: "right.src",
         label: "Right-Hand Image",
         component: "image",
-        parse: (filename) => `/${filename}`,
-        uploadDir: () => "/assets/images/",
+        parse: (filename) => `/uploads/${filename}`,
+        uploadDir: () => "/uploads",
         previewSrc: (formValues, input) => {
           const index = input.field.name.split(".")[1];
-          const currentBlockImage = formValues.blocks[index].right.src;
-          return currentBlockImage;
+          const result = `${process.env.STRAPI_URL}${formValues.blocks[index].right.src}`;
+          return result;
         },
+
         focusRing: false,
       },
       {
