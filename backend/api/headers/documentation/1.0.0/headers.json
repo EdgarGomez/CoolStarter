@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/pages": {
+    "/headers": {
       "get": {
         "deprecated": false,
-        "description": "Find all the pages's records",
+        "description": "Find all the headers's records",
         "responses": {
           "200": {
-            "description": "Retrieve pages document(s)",
+            "description": "Retrieve headers document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Pages"
+                    "$ref": "#/components/schemas/Headers"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Pages"
+          "Headers"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new pages record",
+        "description": "Create a new headers record",
         "responses": {
           "200": {
-            "description": "Retrieve pages document(s)",
+            "description": "Retrieve headers document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pages"
+                  "$ref": "#/components/schemas/Headers"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Pages"
+          "Headers"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPages"
+                "$ref": "#/components/schemas/NewHeaders"
               }
             }
           }
         }
       }
     },
-    "/pages/count": {
+    "/headers/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of pages documents",
+        "description": "Retrieve the numver of headers documents",
         "responses": {
           "200": {
-            "description": "Retrieve pages document(s)",
+            "description": "Retrieve headers document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Pages"
+          "Headers"
         ],
         "parameters": []
       }
     },
-    "/pages/{id}": {
+    "/headers/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one pages record",
+        "description": "Find one headers record",
         "responses": {
           "200": {
-            "description": "Retrieve pages document(s)",
+            "description": "Retrieve headers document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pages"
+                  "$ref": "#/components/schemas/Headers"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Pages"
+          "Headers"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single pages record",
+        "description": "Update a single headers record",
         "responses": {
           "200": {
-            "description": "Retrieve pages document(s)",
+            "description": "Retrieve headers document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pages"
+                  "$ref": "#/components/schemas/Headers"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Pages"
+          "Headers"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPages"
+                "$ref": "#/components/schemas/NewHeaders"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single pages record",
+        "description": "Delete a single headers record",
         "responses": {
           "200": {
-            "description": "deletes a single pages based on the ID supplied",
+            "description": "deletes a single headers based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Pages"
+          "Headers"
         ],
         "parameters": [
           {
@@ -514,47 +514,37 @@
   },
   "components": {
     "schemas": {
-      "Pages": {
+      "Headers": {
         "required": [
-          "id",
-          "slug"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
+          "blocks": {
+            "type": "object"
+          },
           "title": {
             "type": "string"
           },
-          "slug": {
-            "type": "uid"
-          },
-          "isHome": {
+          "active": {
             "type": "boolean",
             "default": false
-          },
-          "blocks": {
-            "type": "object"
           }
         }
       },
-      "NewPages": {
-        "required": [
-          "slug"
-        ],
+      "NewHeaders": {
         "properties": {
+          "blocks": {
+            "type": "object"
+          },
           "title": {
             "type": "string"
           },
-          "slug": {
-            "type": "uid"
-          },
-          "isHome": {
+          "active": {
             "type": "boolean",
             "default": false
-          },
-          "blocks": {
-            "type": "object"
           }
         }
       }
@@ -562,7 +552,7 @@
   },
   "tags": [
     {
-      "name": "Pages"
+      "name": "Headers"
     }
   ]
 }

@@ -1,6 +1,7 @@
 import Container from "../components/container";
 import Layout from "../components/layout";
 import Head from "next/head";
+import headersApi from "../lib/headers-api";
 import pagesApi from "../lib/pages-api";
 import { InlineWysiwyg, HtmlFieldPlugin } from "react-tinacms-editor";
 import ReactMarkdown from "react-markdown";
@@ -13,7 +14,7 @@ import { paragraphBlock } from "../blocks/Paragraph";
 import { featureListBlock } from "../blocks/FeatureList";
 import data from "../blocks/data.json";
 
-export default function Index({ homePage: initialHomepage }) {
+export default function Index({ homePage: initialHomepage, header }) {
   const cms = useCMS();
 
   const HOME_BLOCKS = {
@@ -63,7 +64,7 @@ export default function Index({ homePage: initialHomepage }) {
 
   return (
     <>
-      <Layout>
+      <Layout header={header}>
         <Head>
           <title>{homePage && homePage.title}</title>
         </Head>
@@ -82,8 +83,9 @@ export default function Index({ homePage: initialHomepage }) {
 }
 
 export async function getStaticProps() {
+  const header = await headersApi.findByActive();
   const homepage = await pagesApi.findByHome();
   return {
-    props: { homePage: { ...homepage.data[0] } },
+    props: { homePage: { ...homepage.data[0] }, header: { ...header.data[0] } },
   };
 }

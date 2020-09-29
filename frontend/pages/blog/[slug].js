@@ -22,6 +22,7 @@ import { heroBlock } from "../../blocks/Hero";
 import { imagesBlock } from "../../blocks/Images";
 import { paragraphBlock } from "../../blocks/Paragraph";
 import { featureListBlock } from "../../blocks/FeatureList";
+import { freeTextBlock } from "../../blocks/FreeText";
 
 export default function Post({
   config: initialConfig,
@@ -74,6 +75,7 @@ export default function Post({
     images: imagesBlock,
     paragraph: paragraphBlock,
     features: featureListBlock,
+    freeText: freeTextBlock,
   };
 
   console.log("imagen inicial", initialPost.coverImage);
@@ -124,6 +126,7 @@ export default function Post({
           images: imagesBlock.template,
           paragraph: paragraphBlock.template,
           features: featureListBlock.template,
+          freeText: freeTextBlock.template,
         },
       },
     ],
