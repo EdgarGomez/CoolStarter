@@ -8,7 +8,7 @@ import { featureBlock } from "../Feature";
 function Row({ index }) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <div className="wrapper">
+      <div className="wrapper" flex bg-gray-200>
         <InlineBlocks
           name="row"
           blocks={ROW_BLOCKS}
