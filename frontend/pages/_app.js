@@ -14,6 +14,7 @@ import {
 } from "react-tinacms-strapi";
 import { SMediaStore } from "../lib/media-store";
 import { ChakraProvider, theme } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/core";
 
 import { merge } from "@chakra-ui/utils";
 
@@ -24,6 +25,7 @@ import "../styles/images.css";
 import "../styles/features.css";
 
 const customTheme = merge(theme, {
+  breakpoints: ["576px", "768px", "992px", "1200px"],
   colors: {
     brand: {
       900: "#1a365d",
@@ -180,6 +182,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider resetCSS theme={customTheme}>
       <StrapiProvider>
+        <Box h="40px" w="100%" bg="tomato"></Box>
         <Component {...pageProps} />
       </StrapiProvider>
     </ChakraProvider>

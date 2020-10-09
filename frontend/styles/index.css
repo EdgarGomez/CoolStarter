@@ -74,3 +74,63 @@ p {
 p:not(:last-child) {
   margin: 0 0 1.125rem 0;
 }
+
+/*.hola {
+  @apply w-full my-0 flex-col justify-between max-w-full md:my-0;
+}*/
+
+/* MARISA CLASES */
+.width-full {
+  width: 100%;
+}
+.container {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-direction-mobile-column {
+  flex-direction: column;
+}
+
+.flex-direction-mobile-row {
+  flex-direction: row;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+.flex-justify-left {
+  justify-content: flex-start;
+}
+.flex-justify-right {
+  justify-content: flex-end;
+}
+.flex-justify-space {
+  justify-content: space-between;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+.flex-align-top {
+  align-items: flex-start;
+}
+.flex-align-bottom {
+  align-items: flex-end;
+}
+
+@media only screen and (min-width: 1025px) {
+  .flex-direction-desktop-column {
+    flex-direction: column;
+  }
+  .flex-direction-desktop-row {
+    flex-direction: row;
+  }
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
