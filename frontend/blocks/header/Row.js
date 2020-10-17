@@ -10,32 +10,45 @@ import { Flex } from "@chakra-ui/core";
 function Row({
   background_color,
   container,
-  flex_direction,
+  flex_direction_mobile,
   flex_direction_desktop,
   flex_justify_mobile,
   flex_align_mobile,
+  flex_justify_desktop,
+  flex_align_desktop,
+  margin_mobile,
+  margin_top_desktop,
+  margin_bottom_desktop,
+  margin_horizontal_desktop,
 }) {
-  let inlineBlockClasses;
+  let inlineBlockClasses = "DELETECLASS flex w-full h-full";
 
+  /* PADDING - Pending to Make it custom TODO  */
+  inlineBlockClasses += "p-1 ";
+  /* HEIGHT - Pending to Make it custom TODO  */
+  inlineBlockClasses += "ntw-min-height ";
+
+  /* CONTAINER */
   if (container) {
-    inlineBlockClasses = "flex container ";
+    inlineBlockClasses += "my-0 mx-auto container ";
   } else {
-    inlineBlockClasses = "flex width-full ";
+    inlineBlockClasses += margin_horizontal_desktop + " ";
   }
 
-  if (flex_direction == "column") {
-    inlineBlockClasses += "flex-direction-mobile-column ";
-  } else {
-    inlineBlockClasses += "flex-direction-mobile-row ";
-  }
+  /* MARGIN */
+  inlineBlockClasses +=
+    margin_mobile +
+    " " +
+    margin_top_desktop +
+    " " +
+    margin_bottom_desktop +
+    " ";
 
-  if (flex_direction_desktop == "column") {
-    inlineBlockClasses += "flex-direction-desktop-column ";
-  } else {
-    inlineBlockClasses += "flex-direction-desktop-row ";
-  }
-
-  inlineBlockClasses += flex_justify_mobile + " " + flex_align_mobile + " ";
+  /* ROW STRUCTURE */
+  inlineBlockClasses +=
+    flex_direction_mobile + " " + flex_direction_desktop + " ";
+  inlineBlockClasses += flex_justify_mobile + " " + flex_justify_desktop + " ";
+  inlineBlockClasses += flex_align_mobile + " " + flex_align_desktop + " ";
 
   return (
     <Flex width="100%" bg={background_color}>
@@ -68,12 +81,18 @@ export const rowBlock = {
   template: {
     label: "Row",
     defaultItem: {
-      background_color: "#000",
+      background_color: "#EDF2F7",
       container: false,
-      flex_direction: "row",
-      flex_direction_desktop: "row",
-      flex_justify_mobile: "flex-justify-center",
-      flex_align_mobile: "flex-align-center",
+      margin_mobile: "m-0",
+      margin_top_desktop: "mt-0",
+      margin_bottom_desktop: "mb-0",
+      margin_horizontal_desktop: "ml-0 mr-0",
+      flex_direction_mobile: "flex-column",
+      flex_direction_desktop: "md:flex-row",
+      flex_justify_mobile: "justify-start",
+      flex_align_mobile: "items-center",
+      flex_justify_desktop: "md:justify-start",
+      flex_align_desktop: "md:items-center",
     },
     fields: [
       {
@@ -87,17 +106,110 @@ export const rowBlock = {
         component: "toggle",
       },
       {
-        name: "flex_direction",
+        name: "margin_mobile",
+        label: "Margin Mobile",
+        component: "select",
+        options: [
+          {
+            value: "mt-0",
+            label: "None",
+          },
+          {
+            value: "margin-mobile-small",
+            label: "Small",
+          },
+          {
+            value: "margin-mobile-medium",
+            label: "Medium",
+          },
+          {
+            value: "margin-mobile-big",
+            label: "Big",
+          },
+        ],
+      },
+      {
+        name: "margin_top_desktop",
+        label: "Margin Top",
+        component: "select",
+        options: [
+          {
+            value: "mt-0",
+            label: "None",
+          },
+          {
+            value: "margin-top-small",
+            label: "Small",
+          },
+          {
+            value: "margin-top-medium",
+            label: "Medium",
+          },
+          {
+            value: "margin-top-big",
+            label: "Big",
+          },
+        ],
+      },
+      {
+        name: "margin_bottom_desktop",
+        label: "Margin Bottom",
+        component: "select",
+        options: [
+          {
+            value: "mb-0",
+            label: "None",
+          },
+          {
+            value: "margin-bottom-small",
+            label: "Small",
+          },
+          {
+            value: "margin-bottom-medium",
+            label: "Medium",
+          },
+          {
+            value: "margin-bottom-big",
+            label: "Big",
+          },
+        ],
+      },
+      {
+        name: "margin_horizontal_desktop",
+        label:
+          "Margin Horizontal (only if no container options its selected TODO)",
+        component: "select",
+        options: [
+          {
+            value: "ml-0 mr-0",
+            label: "None",
+          },
+          {
+            value: "margin-left-small margin-right-small",
+            label: "Small",
+          },
+          {
+            value: "margin-left-medium margin-right-medium",
+            label: "Medium",
+          },
+          {
+            value: "margin-left-big margin-right-big",
+            label: "Big",
+          },
+        ],
+      },
+      {
+        name: "flex_direction_mobile",
         label: "Content direction Mobile",
         component: "select",
         options: [
           {
-            value: "row",
-            label: "horizontal",
+            value: "flex-row",
+            label: "Row",
           },
           {
-            value: "column",
-            label: "vertical",
+            value: "flex-col",
+            label: "Column",
           },
         ],
       },
@@ -107,12 +219,12 @@ export const rowBlock = {
         component: "select",
         options: [
           {
-            value: "row",
-            label: "Horizontal",
+            value: "md:flex-row",
+            label: "Row",
           },
           {
-            value: "column",
-            label: "Vertical",
+            value: "md:flex-col",
+            label: "Column",
           },
         ],
       },
@@ -122,19 +234,42 @@ export const rowBlock = {
         component: "select",
         options: [
           {
-            value: "flex-justify-center",
+            value: "justify-center",
             label: "Centered",
           },
           {
-            value: "flex-justify-left",
+            value: "justify-start",
             label: "Align left",
           },
           {
-            value: "flex-justify-right",
+            value: "justify-end",
             label: "Align right",
           },
           {
-            value: "flex-justify-space",
+            value: "justify-between",
+            label: "Full line",
+          },
+        ],
+      },
+      {
+        name: "flex_justify_desktop",
+        label: "Content horizontal alignment Desktop",
+        component: "select",
+        options: [
+          {
+            value: "md:justify-center",
+            label: "Centered",
+          },
+          {
+            value: "md:justify-start",
+            label: "Align left",
+          },
+          {
+            value: "md:justify-end",
+            label: "Align right",
+          },
+          {
+            value: "md:justify-between",
             label: "Full line",
           },
         ],
@@ -145,15 +280,34 @@ export const rowBlock = {
         component: "select",
         options: [
           {
-            value: "flex-align-center",
+            value: "items-center",
             label: "Centered",
           },
           {
-            value: "flex-align-top",
+            value: "items-start",
             label: "Align top",
           },
           {
-            value: "flex-align-bottom",
+            value: "items-end",
+            label: "Align bottom",
+          },
+        ],
+      },
+      {
+        name: "flex_align_desktop",
+        label: "Content vertical alignment Desktop",
+        component: "select",
+        options: [
+          {
+            value: "md:items-center",
+            label: "Centered",
+          },
+          {
+            value: "md:items-start",
+            label: "Align top",
+          },
+          {
+            value: "md:items-end",
             label: "Align bottom",
           },
         ],

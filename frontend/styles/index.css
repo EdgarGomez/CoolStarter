@@ -18,13 +18,9 @@ html {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-color: #fffaf4;
 }
 
 code {
@@ -47,90 +43,180 @@ code {
   max-width: 800px;
 }
 
+/* GENERAL STYLES OPTIONS */
+
+/************ Choose big screens width container, in the rest always 100% */
+.container {
+  @apply w-full;
+}
+
+@media only screen and (min-width: 1280px) {
+  .container {
+    width: 1280px;
+  }
+}
+
+/* Background color */
+body {
+  background-color: #fffaf4;
+}
+
+/* Font family */
+body,
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    sans-serif;
+}
+
+/* Text color */
+body,
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  color: #252525;
+}
+
+/* Base Text size */
+p {
+  font-size: 1.125rem;
+}
+
+/* H1 Text Size TODO overwritten in <style> h1, h2, h3, h4, h5, h6*/
 h1 {
   font-size: 3.25rem;
   line-height: 1.2;
-  margin: 0;
 }
 
-h1:not(:last-child) {
-  margin-bottom: 1.5rem;
+/* H2 Text Size */
+h2 {
+  font-size: 2.5rem;
 }
 
+/* H3 Text Size */
 h3 {
   font-size: 1.5rem;
-  margin: 0;
 }
 
-h3:not(:last-child) {
-  margin-bottom: 1rem;
-}
+/* Primary color TODO */
+/* Primary color hover TODO */
+/* Secondary color TODO */
+/* Secondary color hover TODO */
+/* Neutral color light TODO */
+/* Neutral color dark TODO */
 
-p {
-  font-size: 1.125rem;
-  margin: 0;
+/* Margin small */
+.margin-mobile-small {
+  margin: 1rem;
 }
-
-p:not(:last-child) {
-  margin: 0 0 1.125rem 0;
-}
-
-/*.hola {
-  @apply w-full my-0 flex-col justify-between max-w-full md:my-0;
-}*/
-
-/* MARISA CLASES */
-.width-full {
-  width: 100%;
-}
-.container {
-  width: 100%;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-direction-mobile-column {
-  flex-direction: column;
-}
-
-.flex-direction-mobile-row {
-  flex-direction: row;
-}
-
-.flex-justify-center {
-  justify-content: center;
-}
-.flex-justify-left {
-  justify-content: flex-start;
-}
-.flex-justify-right {
-  justify-content: flex-end;
-}
-.flex-justify-space {
-  justify-content: space-between;
-}
-
-.flex-align-center {
-  align-items: center;
-}
-.flex-align-top {
-  align-items: flex-start;
-}
-.flex-align-bottom {
-  align-items: flex-end;
-}
-
-@media only screen and (min-width: 1025px) {
-  .flex-direction-desktop-column {
-    flex-direction: column;
+@media only screen and (min-width: 1280px) {
+  .margin-mobile-small {
+    margin: 0;
   }
-  .flex-direction-desktop-row {
-    flex-direction: row;
+  .margin-top-small {
+    margin-top: 1rem;
   }
-  .container {
-    width: 90%;
-    margin: 0 auto;
+  .margin-bottom-small {
+    margin-bottom: 1rem;
   }
+  .margin-left-small {
+    margin-left: 1rem;
+  }
+  .margin-right-small {
+    margin-right: 1rem;
+  }
+}
+
+/* Margin medium */
+.margin-mobile-medium {
+  margin: 2rem;
+}
+@media only screen and (min-width: 1280px) {
+  .margin-mobile-medium {
+    margin: 0;
+  }
+  .margin-top-medium {
+    margin-top: 2rem;
+  }
+  .margin-bottom-medium {
+    margin-bottom: 2rem;
+  }
+  .margin-left-medium {
+    margin-left: 2rem;
+  }
+  .margin-right-medium {
+    margin-right: 2rem;
+  }
+}
+
+/* Margin big */
+.margin-mobile-big {
+  margin: 3rem;
+}
+@media only screen and (min-width: 1280px) {
+  .margin-mobile-big {
+    margin: 0;
+  }
+  .margin-top-big {
+    margin-top: 3rem;
+  }
+  .margin-bottom-big {
+    margin-bottom: 3rem;
+  }
+  .margin-left-big {
+    margin-left: 3rem;
+  }
+  .margin-right-big {
+    margin-right: 3rem;
+  }
+}
+
+/* Padding small, medium and big TODO */
+
+/*********** ROW STYLE OPTIONS 
+
+TODO Block controls de row pone un width: 100% que me molesta
+TODO en el menu editar, aparezca lo que está seleccionado por defecto
+TODO poder tener una opción a nivel de row, para poner nombre a esa fila y verlo desde el sidebar de edición
+
+Container
+Content direction Mobile
+Content direction Desktop
+Content horizontal alignment Mobile
+Content vertical alignment Mobile
+Content horizontal alignment Desktop
+Content vertical alignment Desktop 
+
+*/
+
+/* Row border or shadow TODO */
+/* Ros custom field to add classes */
+/* Row height TODO */
+.ntw-min-height {
+  min-height: 50px;
+}
+.ntw-min-height .logo {
+  height: 50px;
 }
